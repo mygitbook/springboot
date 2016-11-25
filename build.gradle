@@ -1,0 +1,94 @@
+group 'com.ws'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'maven'
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:1.2.4'
+    }
+}
+
+if (!project.plugins.findPlugin(org.akhikhl.gretty.GrettyPlugin))
+    project.apply(plugin: org.akhikhl.gretty.GrettyPlugin)
+
+repositories {
+    mavenCentral()
+}
+
+group = 'com.ws'
+version = '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+gretty {
+    httpEnabled = true
+    servletContainer = "tomcat8"
+    contextPath = "/springboot"
+    host = "localhost"
+    httpPort = 8080
+    scanInterval = 1
+    fastReload = true
+    inplaceMode = "soft"
+    loggingLevel = "INFO"
+    consoleLogEnabled = true
+
+    debugPort = 8080
+    debugSuspend = true
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+ext {
+    springFrameworkVersion = '4.2.6.RELEASE'
+}
+
+dependencies {
+    compile (
+            "org.springframework:spring-core:${springFrameworkVersion}",
+            "org.springframework:spring-aop:${springFrameworkVersion}",
+            "org.springframework:spring-aop:${springFrameworkVersion}",
+            "org.springframework:spring-web:${springFrameworkVersion}",
+            "org.springframework:spring-webmvc:${springFrameworkVersion}",
+            "org.springframework:spring-context:${springFrameworkVersion}",
+            "org.springframework:spring-context-support:${springFrameworkVersion}",
+            "org.springframework:spring-expression:${springFrameworkVersion}",
+            "org.springframework:spring-beans:${springFrameworkVersion}"
+    )
+
+    testCompile (
+            "org.json:json:20161125",
+            "org.apache.httpcomponents:httpmime:4.3.5",
+            "junit:junit:4.12"
+    )
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+[compileJava, javadoc, compileTestJava]*.options*.encoding = "UTF-8"
+
+

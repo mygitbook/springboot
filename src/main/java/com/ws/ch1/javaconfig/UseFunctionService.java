@@ -1,0 +1,17 @@
+package com.ws.ch1.javaconfig;
+
+/**
+ * Created by martin on 11/25/16.
+ */
+public class UseFunctionService {
+
+    FunctionService functionService;
+
+    public void setFunctionService(FunctionService functionService) {
+        this.functionService = functionService;
+    }
+
+    public String sayHello(String word){
+        return functionService.sayHello(word);
+    }
+}
