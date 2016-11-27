@@ -77,7 +77,8 @@ dependencies {
             "org.springframework:spring-expression:${springFrameworkVersion}",
             "org.springframework:spring-beans:${springFrameworkVersion}",
             "org.aspectj:aspectjweaver:1.8.9",
-            "commons-io:commons-io:2.5"
+            "commons-io:commons-io:2.5",
+            "javax.annotation:jsr250-api:1.0"
 
     )
 

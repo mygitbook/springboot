@@ -13,6 +13,7 @@ public class MainClass {
     public static void main(String[] args){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ElConfig.class);
 
+        // TODO: 11/27/16 Property or field 'SystemProperties' cannot be found on object of type 'org.springframework.beans.factory.config.BeanExpressionContext'
         ElConfig resourceService = context.getBean(ElConfig.class);
         resourceService.outputResource();
 
